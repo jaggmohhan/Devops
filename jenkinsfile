@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    // Create a simple static HTML file
+                    writeFile file: 'index.html', text: '''
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Static Website</title>
+                    </head>
+                    <body>
+                        <h1>Welcome to the Static Website</h1>
+                        <p>This is a simple static website built with Jenkins.</p>
+                    </body>
+                    </html>
+                    '''
+                }
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                // Archive the generated HTML file
+                archiveArtifacts artifacts: 'index.html', fingerprint: true
+            }
+        }
+
+        stage('Publish HTML Report') {
+            steps {
+                // Publish the HTML file using the HTML Publisher plugin
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: '.',
+                    reportFiles: 'index.html',
+                    reportName: 'Static Website'
+                ])
+            }
+        }
+    }
+}
