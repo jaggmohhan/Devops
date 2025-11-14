@@ -102,9 +102,15 @@ docker compose up -d
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 
+
+
 if any error came u can do this 
 docker compose down
 >> docker compose up -d
+
+
+mkdir site
+ echo "<h1>Welcome to Jenkins Static Site</h1>" > site/index.html
 
 
 
