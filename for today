@@ -255,7 +255,7 @@ git commit --allow-empty -m "retrigger: fix Docker Hub login"
 
 
 
-Manage Kubernetes Resources Using CLI
+6.Manage Kubernetes Resources Using CLI
 
 A. Install Docker
 Windows:
